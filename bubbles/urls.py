@@ -8,6 +8,7 @@ from apps.events.views import EventViewSet, EventClassViewSet, EventSeverityView
 from apps.components.views import ComponentViewSet
 from apps.statistics.views import DataSourceViewSet, DataPointViewSet
 
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 
@@ -24,6 +25,7 @@ urlpatterns = patterns('',
                        url(r'^services/', include('apps.services.urls')),
                        url(r'^statistics/', include('apps.statistics.urls')),
                        url(r'^events/', include('apps.events.urls')),
+                       url(r'^reports/', include('apps.reports.urls')),
                        # Uncomment the admin/doc line below to enable admin documentation:
                        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
                        url(r'^search/', include('haystack.urls')),

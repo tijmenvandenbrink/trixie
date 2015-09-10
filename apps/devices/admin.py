@@ -7,9 +7,11 @@ class DeviceStatusAdmin(admin.ModelAdmin):
 
 
 class DeviceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'system_node_key', 'pbbte_bridge_mac', 'ip', 'software_version', 'device_type')
-    list_filter = ('software_version', 'device_type')
-    search_fields = ('name', 'system_node_key', 'pbbte_bridge_mac', 'ip', 'software_version', 'device_type')
+    list_display = ('name', 'description', 'category', 'manufacturer', 'device_type', 'serial', 'location', 'ip',
+                    'software_version', 'status')
+    list_filter = ('category', 'manufacturer', 'device_type', 'software_version', 'status')
+    search_fields = ('name', 'description', 'category', 'manufacturer', 'device_type', 'serial', 'location', 'ip',
+                     'software_version', 'status')
 
 
 admin.site.register(Device, DeviceAdmin)

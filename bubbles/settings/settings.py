@@ -50,7 +50,7 @@ class Base(Configuration):
 
     # URL prefix for static files.
     # Example: "http://media.lawrence.com/static/"
-    STATIC_URL = '/static/'
+    STATIC_URL = '/assets/'
 
     # Additional locations of static files
     STATICFILES_DIRS = (
@@ -117,7 +117,8 @@ class Base(Configuration):
         'djangobower',
         'django_nvd3',
         'haystack',
-        'rest_framework'
+        'rest_framework',
+        'django_filters',
     )
 
     LOCAL_APPS = (
@@ -128,6 +129,7 @@ class Base(Configuration):
         'apps.events',
         'apps.services',
         'apps.statistics',
+        'apps.reports',
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -148,7 +150,8 @@ class Base(Configuration):
     ########## RESTFRAMEWORK
 
     REST_FRAMEWORK = {
-        'PAGINATE_BY': 10
+        'PAGINATE_BY': 10,
+        'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
     }
 
     ########## BOOTSTRAP 3
@@ -275,6 +278,7 @@ class Base(Configuration):
             }
         }
     }
+
 
 class Dev(Base):
     DEBUG = True

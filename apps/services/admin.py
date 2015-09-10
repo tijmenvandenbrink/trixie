@@ -3,8 +3,9 @@ from apps.services.models import Service, ServiceStatus, ServiceType
 
 
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'service_type', 'cir', 'eir')
-    list_filter = ('service_type', 'organization')
+    list_display = ('name', 'description', 'service_type', 'status', 'start',
+                    'end', 'frequency', 'service_window')
+    list_filter = ('service_type', 'status', 'start', 'end', 'frequency', 'service_window')
     search_fields = ('name', 'description')
 
 

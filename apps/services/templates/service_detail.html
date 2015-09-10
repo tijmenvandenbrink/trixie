@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+<!--
 {% load nvd3_tags %}
 
 {% block head %}
@@ -7,20 +8,20 @@
     {% load_chart data.charttype data.chartdata_with_date data.chartcontainer_with_date data.extra_with_date %}
 
 {% endblock %}
-
+-->
+{% block title %}{{ service.name }}{% endblock %}
 {% block content %}
-          <ol class="breadcrumb">
-            <li><a href="{% url 'apps.core.views.dashboard' %}">Home</a></li>
-            <li><a href="{% url 'services_list' %}">Services</a></li>
-            <li class="active"><a href="{% url 'service_detail' service.pk %}">{{ service.name }}</a></li>
-          </ol>
-          <h1 class="page-header"><i class="fa fa-cloud"></i> {{ service.name }}</h1>
-          <div class="col-md-6">
-            <div class="panel panel-default panel-primary">
-              <div class="panel-heading">
-                <h2 class="panel-title"><i class="fa fa-info-circle fa-inverse fa-2x fa-fw"></i> General</h2>
-              </div>
-              <div class="panel-body">
+<div class="grid simple horizontal green">
+    <div class="grid-title">
+        <h4>Overview</h4>
+        <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+            <a href="#grid-config" data-toggle="modal" class="config"></a>
+            <a href="javascript:;" class="reload"></a>
+            <a href="javascript:;" class="remove"></a>
+        </div>
+    </div>
+    <div class="grid-body">
                   <dl class="dl-horizontal">
                   <dt>Name</dt>
                   <dd>{{ service.name }}</dd>
@@ -28,27 +29,26 @@
                   <dd>{{ service.description }}</dd>
                   <dt>Organization(s)</dt>
                   <dd>{% for organization in service.organization.all %}
-                        <a href="{% url 'organization_detail' organization.org_id %}">{{ organization.name }}</a>,
+                        <a href="{% url 'organization_detail' organization.id %}">{{ organization.name }}</a>,
                       {% empty %}
                         Unknown</dd>
                       {% endfor %}
                   </dd>
-                  <dt>Service ID</dt>
-                  <dd>{{ service.service_id }}</dd>
                   <dt>Type</dt>
                   <dd>{{ service.service_type.name }}</dd>
                   <dt>Status</dt>
                   <dd>{{ service.status.name }}</dd>
-                  <dt>CIR</dt>
-                  <dd>{{ service.cir }}</dd>
-                  <dt>EIR</dt>
-                  <dd>{{ service.eir }}</dd>
-                  <dt>Report on</dt>
-                  <dd>{{ service.report_on }}</dd>
+                  <dt>Start</dt>
+                  <dd>{{ service.start }}</dd>
+                  <dt>End</dt>
+                  <dd>{{ service.end }}</dd>
+                  <dt>Frequency</dt>
+                  <dd>{{ service.frequency }}</dd>
+                  <dt>Service Window</dt>
+                  <dd>{{ service.service_window }}</dd>
                   </dl>
-              </div>
-            </div>
-          </div>
+    </div>
+</div>
           <div class="col-md-6">
             <div class="panel panel-default panel-primary">
               <div class="panel-heading">
@@ -128,8 +128,7 @@
                 <h2 class="panel-title"><i class="fa fa-bar-chart-o fa-inverse fa-2x fa-fw"></i> Volume Statistics</h2>
               </div>
               <div class="panel-body">
-                {% include_container data.chartcontainer_with_date 600 900 %}
+                <!-- {% include_container data.chartcontainer_with_date 600 900 %} -->
               </div>
           </div>
 {% endblock %}
-</body>

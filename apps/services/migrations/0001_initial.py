@@ -8,7 +8,8 @@ import taggit.managers
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('components', '0002_auto_20141202_1253'),
+        ('devices', '0002_auto_20150320_2212'),
+        ('components', '0002_auto_20150320_2212'),
         ('organizations', '0001_initial'),
         ('taggit', '0001_initial'),
     ]
@@ -21,12 +22,13 @@ class Migration(migrations.Migration):
                 ('last_modified', models.DateTimeField(auto_now=True)),
                 ('creation_date', models.DateTimeField(auto_now_add=True)),
                 ('name', models.CharField(max_length=200)),
-                ('description', models.CharField(max_length=200, blank=True)),
-                ('service_id', models.CharField(unique=True, max_length=200)),
-                ('cir', models.BigIntegerField(null=True, blank=True)),
-                ('eir', models.BigIntegerField(null=True, blank=True)),
-                ('report_on', models.BooleanField(default=False)),
-                ('component', models.ManyToManyField(to='components.Component', null=True, blank=True)),
+                ('description', models.TextField(blank=True)),
+                ('start', models.DateField(null=True, blank=True)),
+                ('end', models.DateField(null=True, blank=True)),
+                ('frequency', models.PositiveIntegerField(blank=True)),
+                ('service_window', models.CharField(max_length=200, choices=[(b'oh', b'Office Hours'), (b'ooh', b'Out of Office Hours'), (b'24x7', b'24x7')])),
+                ('component', models.ManyToManyField(related_name='services', null=True, to='components.Component', blank=True)),
+                ('device', models.ManyToManyField(related_name='services', null=True, to='devices.Device', blank=True)),
                 ('organization', models.ManyToManyField(related_name='services', to='organizations.Organization')),
             ],
             options={

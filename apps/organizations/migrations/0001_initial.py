@@ -17,8 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=75)),
-                ('org_id', models.IntegerField(unique=True)),
-                ('org_abbreviation', models.CharField(max_length=25)),
+                ('abbreviation', models.CharField(max_length=25)),
                 ('tags', taggit.managers.TaggableManager(to='taggit.Tag', through='taggit.TaggedItem', blank=True, help_text='A comma-separated list of tags.', verbose_name='Tags')),
             ],
             options={

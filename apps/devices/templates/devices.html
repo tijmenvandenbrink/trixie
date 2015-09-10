@@ -1,18 +1,29 @@
 {% extends "base.html" %}
+{% block title %}Devices{% endblock %}
 {% block content %}
-    <ol class="breadcrumb">
-        <li><a href="{% url 'apps.core.views.dashboard' %}">Home</a></li>
-        <li class="active"><a href="{% url 'devices_list' %}">Devices</a></li>
-    </ol>
-    <h1 class="page-header"><i class="fa fa-rocket"></i> Devices <span class="badge badge-primary"> {{ device_list.count }}</span></h1>
+
+
+<div class="grid simple horizontal green">
+    <div class="grid-title">
+        <h4>Overview</h4>
+        <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+            <a href="#grid-config" data-toggle="modal" class="config"></a>
+            <a href="javascript:;" class="reload"></a>
+            <a href="javascript:;" class="remove"></a>
+        </div>
+    </div>
+    <div class="grid-body">
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>Name</th>
-                <th>System Node Key</th>
-                <th>PBBTE Bridge Mac</th>
+                <th>Hostname</th>
                 <th>Device Type</th>
+                <th>Manufacturer</th>
+                <th>Serial</th>
+                <th>Location</th>
                 <th>IP Address</th>
                 <th>Software Version</th>
                 <th>Status</th>
@@ -22,9 +33,11 @@
             {% for device in device_list.all %}
                 <tr>
                     <td><a href="{% url 'device_detail' device.name %}">{{ device.name }}</a></td>
-                    <td>{{ device.system_node_key }}</td>
-                    <td>{{ device.pbbte_bridge_mac }}</td>
+                    <td>{{ device.hostname }}</td>
                     <td>{{ device.device_type }}</td>
+                    <td>{{ device.manufacturer }}</td>
+                    <td>{{ device.serial }}</td>
+                    <td>{{ device.location }}</td>
                     <td>{{ device.ip }}</td>
                     <td>{{ device.software_version }}</td>
                     <td>{{ device.status.name }}</td>
@@ -33,6 +46,9 @@
             </tbody>
         </table>
     </div>
+    </div>
+</div>
+
     <div class="container" align="center">
         <ul class="pagination pagination-sm">
             {% if page_obj.has_previous %}

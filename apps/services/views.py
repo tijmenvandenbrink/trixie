@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView
 
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, filters
 from braces.views import OrderableListMixin, PrefetchRelatedMixin
 from digg_paginator import DiggPaginator
 
@@ -26,12 +26,13 @@ class ServiceDetail(DetailView):
     context_object_name = 'service'
     template_name = 'service_detail.html'
 
+"""
     def get_context_data(self, **kwargs):
         context = super(ServiceDetail, self).get_context_data(**kwargs)
         datasources = DataSource.objects.filter(name__contains="Volume")
         context['data'] = create_multibarchart(self.get_object(), datasources)
         return context
-
+"""
 
 class ServiceViewSet(viewsets.ModelViewSet):
     """
@@ -42,6 +43,8 @@ class ServiceViewSet(viewsets.ModelViewSet):
     queryset = Service.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = ServiceSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('name', 'device', 'component', 'service_type', 'status', 'service_window')
 
 
 class ServiceStatusViewSet(viewsets.ModelViewSet):

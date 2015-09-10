@@ -1,30 +1,38 @@
 {% extends "base.html" %}
+{% block title %}Organizations{% endblock %}
 {% block content %}
-    <ol class="breadcrumb">
-        <li><a href="{% url 'apps.core.views.dashboard' %}">Home</a></li>
-        <li class="active"><a href="{% url 'organizations_list' %}">Organizations</a></li>
-    </ol>
-    <h1 class="page-header"><i class="fa fa-building-o"></i> Organizations <span class="badge badge-primary"> {{ organization_list.count }}</span></h1>
+<div class="grid simple horizontal green">
+    <div class="grid-title">
+        <h4>Overview</h4>
+        <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+            <a href="#grid-config" data-toggle="modal" class="config"></a>
+            <a href="javascript:;" class="reload"></a>
+            <a href="javascript:;" class="remove"></a>
+        </div>
+    </div>
+    <div class="grid-body">
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Organization ID</th>
                 <th>Abbreviation</th>
             </tr>
             </thead>
             <tbody>
             {% for organization in organization_list.all %}
                 <tr>
-                    <td><a href="{% url 'organization_detail' organization.org_id %}">{{ organization.name }}</a></td>
-                    <td>{{ organization.org_id }}</td>
-                    <td>{{ organization.org_abbreviation }}</td>
+                    <td><a href="{% url 'organization_detail' organization.id %}">{{ organization.name }}</a></td>
+                    <td>{{ organization.abbreviation }}</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+    </div>
+</div>
+
     <div class="container" align="center">
         <ul class="pagination pagination-sm">
             {% if page_obj.has_previous %}

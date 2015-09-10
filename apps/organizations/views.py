@@ -22,7 +22,6 @@ class OrganizationDetail(PrefetchRelatedMixin, DetailView):
     prefetch_related = [u"services", u"services__status", u"services__service_type", u"services__organization"]
     context_object_name = 'organization'
     template_name = 'organization_detail.html'
-    slug_field = 'org_id'
 
 
 class OrganizationViewSet(viewsets.ModelViewSet):

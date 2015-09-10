@@ -2,13 +2,11 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import taggit.managers
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('taggit', '0001_initial'),
     ]
 
     operations = [
@@ -19,9 +17,13 @@ class Migration(migrations.Migration):
                 ('last_modified', models.DateTimeField(auto_now=True)),
                 ('creation_date', models.DateTimeField(auto_now_add=True)),
                 ('name', models.CharField(max_length=200)),
-                ('system_node_key', models.CharField(max_length=50)),
-                ('pbbte_bridge_mac', models.CharField(unique=True, max_length=50)),
-                ('device_type', models.CharField(max_length=50)),
+                ('hostname', models.CharField(max_length=200)),
+                ('description', models.TextField(blank=True)),
+                ('category', models.CharField(max_length=200)),
+                ('device_type', models.CharField(max_length=200)),
+                ('manufacturer', models.CharField(max_length=200)),
+                ('serial', models.CharField(max_length=250)),
+                ('location', models.TextField()),
                 ('ip', models.IPAddressField()),
                 ('software_version', models.CharField(max_length=200)),
             ],
@@ -41,17 +43,5 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Device statuses',
             },
             bases=(models.Model,),
-        ),
-        migrations.AddField(
-            model_name='device',
-            name='status',
-            field=models.ForeignKey(to='devices.DeviceStatus'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='device',
-            name='tags',
-            field=taggit.managers.TaggableManager(to='taggit.Tag', through='taggit.TaggedItem', blank=True, help_text='A comma-separated list of tags.', verbose_name='Tags'),
-            preserve_default=True,
         ),
     ]

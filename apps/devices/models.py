@@ -3,6 +3,7 @@ from django.db import models
 from taggit.managers import TaggableManager
 
 from ..core.models import Timestamped
+from ..organizations.models import Organization
 
 
 class DeviceStatus(models.Model):
@@ -18,23 +19,18 @@ class DeviceStatus(models.Model):
 
 class Device(Timestamped):
     name = models.CharField(max_length=200)
-    system_node_key = models.CharField(max_length=50)
-    pbbte_bridge_mac = models.CharField(max_length=50, unique=True)
-    device_type = models.CharField(max_length=50)
-    ip = models.IPAddressField()
-    software_version = models.CharField(max_length=200)
+    hostname = models.CharField(max_length=200, blank=True)
+    description = models.TextField(blank=True)
+    category = models.CharField(max_length=200, blank=True)
+    device_type = models.CharField(max_length=200, blank=True)
+    manufacturer = models.CharField(max_length=200, blank=True)
+    serial = models.CharField(max_length=250, blank=True)
+    location = models.TextField(blank=True)
+    ip = models.IPAddressField(blank=True)
+    software_version = models.CharField(max_length=200, blank=True)
     status = models.ForeignKey(DeviceStatus)
+    organization = models.ForeignKey(Organization, related_name='devices')
     tags = TaggableManager(blank=True)
 
     def __unicode__(self):
         return "{0}".format(self.name)
-
-    def _get_major_software_version(self):
-        """ Returns the major software version. """
-        try:
-            version = int(self.software_version.split('-')[1])
-            return version
-        except:
-            raise Exception('VersionError')
-
-    major_software_version = property(_get_major_software_version)
