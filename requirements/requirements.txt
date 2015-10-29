@@ -24,3 +24,4 @@ numpy==1.10.0.post2
 pandas==0.16.2
 pytz==2015.6
 six==1.10.0
+psycopg2
