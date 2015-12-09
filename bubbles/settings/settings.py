@@ -135,7 +135,7 @@ class Base(Configuration):
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
     INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
-    DATABASES = values.DatabaseURLValue(alias='default', environ_name='BUBBLES_DATABASE_URL')
+    DATABASES = values.DatabaseURLValue(alias='default', environ_name='DATABASE_URL')
 
     # Make this unique, and don't share it with anybody.
     SECRET_KEY = values.SecretValue()

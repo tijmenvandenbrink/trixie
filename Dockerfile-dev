@@ -4,7 +4,7 @@ ENV PYTHONUNBUFFERED 1
 # Requirements have to be pulled and installed here, otherwise caching won't work
 ADD ./requirements /requirements
 
-RUN pip install -r /requirements/production.txt
+RUN pip install -r /requirements/dev.txt
 
 RUN groupadd -r django && useradd -r -g django django
 ADD . /trixie
@@ -16,7 +16,8 @@ ADD ./compose/django/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh && chown django /entrypoint.sh
 RUN chmod +x /gunicorn.sh && chown django /gunicorn.sh
 
-RUN mkdir -p /trixie/bubbles/static/components
+RUN mkdir /trixie/bubbles/log/
+RUN touch /trixie/bubbles/log/bubbles.log
 
 WORKDIR /trixie
 

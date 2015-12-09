@@ -6,10 +6,9 @@
 *.swn
 *.env
 
-# Directories #
+# Logging #
 ###############
 logs/
-bubbles/log/
 .idea/
 
 # SURFnet Specific files #
@@ -34,8 +33,5 @@ docs/_build
 # Celerybeat schedule
 celerybeat-schedule
 
-#Bower components
-bubbles/components/
-
 #static
-bubbles/static/
+bubbles/static/*
