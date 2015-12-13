@@ -5,6 +5,7 @@ postgres:
 
 django:
   build: .
+  dockerfile: Dockerfile-dev
   user: django
   expose:
     - "5000"
@@ -13,7 +14,7 @@ django:
   command: /gunicorn.sh
   volumes:
     - /trixie/bubbles/static
-  env_file: .env
+  env_file: .env-dev
 
 nginx:
   build: ./compose/nginx

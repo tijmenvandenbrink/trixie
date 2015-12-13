@@ -16,8 +16,7 @@ ADD ./compose/django/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh && chown django /entrypoint.sh
 RUN chmod +x /gunicorn.sh && chown django /gunicorn.sh
 
-RUN mkdir /trixie/bubbles/log/
-RUN touch /trixie/bubbles/log/bubbles.log
+RUN mkdir -p /trixie/bubbles/static/components
 
 WORKDIR /trixie
 
