@@ -4,6 +4,7 @@
 *.swo
 *.swp
 *.swn
+*.tmp
 
 # Logging #
 ###############
@@ -16,7 +17,6 @@ _surf_*
 _idd_*
 surf_syncdb_idd.py
 bubbles.db
-local.py
 
 # OS generated files #
 ######################

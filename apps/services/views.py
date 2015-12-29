@@ -6,8 +6,6 @@ from digg_paginator import DiggPaginator
 
 from apps.services.serializers import ServiceSerializer, ServiceStatusSerializer, ServiceTypeSerializer
 from apps.services.models import Service, ServiceStatus, ServiceType
-from apps.statistics.models import DataSource
-from apps.core.utils import create_multibarchart
 
 
 class ServiceList(OrderableListMixin, PrefetchRelatedMixin, ListView):

@@ -26,7 +26,7 @@ class Device(Timestamped):
     manufacturer = models.CharField(max_length=200, blank=True)
     serial = models.CharField(max_length=250, blank=True)
     location = models.TextField(blank=True)
-    ip = models.IPAddressField(blank=True)
+    ip = models.GenericIPAddressField(blank=True, null=True)
     software_version = models.CharField(max_length=200, blank=True)
     status = models.ForeignKey(DeviceStatus)
     organization = models.ForeignKey(Organization, related_name='devices')

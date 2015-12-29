@@ -1,5 +1,4 @@
 #!/bin/bash
 set -e
-python manage.py migrate
 export DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_PORT_5432_TCP_ADDR:$POSTGRES_PORT_5432_TCP_PORT/$POSTGRES_USER
 exec "$@"

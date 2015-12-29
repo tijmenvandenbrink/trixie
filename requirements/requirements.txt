@@ -1,27 +1,38 @@
-Django==1.7.11
-SOAPpy==0.12.5
-argparse==1.2.1
-dj-database-url==0.2.2
-django-configurations==0.8
-django-digg-paginator==0.1.2
-django-taggit==0.12.2
-fpconst==0.7.2
-python-dateutil==2.4.2
-suds==0.4
-wsgiref==0.1.2
-wstools==0.4
-celery==3.1.18
-django-bower==4.8.1
-django-nvd3==0.6.0
-python-nvd3==0.11.0
-django-bootstrap3==5.0.3
-djangorestframework==3.3.1
-django-braces==1.4.0
-django-haystack==2.1.0
-django-filter==0.11.0
-pyelasticsearch==0.6.1
-numpy==1.10.0.post2
-pandas==0.16.2
-pytz==2015.6
-six==1.10.0
+# Django
+Django==1.9
+
+# Configuration
+django-environ==0.4.0
+django-secure==1.0.1
+
+# Python-PostgreSQL Database Adapter
 psycopg2
+
+# Forms
+django-braces==1.4.0
+
+# Search
+django-haystack==2.4.1
+pyelasticsearch==1.4
+
+# REST
+djangorestframework==3.3.1
+django-filter==0.11.0
+
+# Message broker
+celery==3.1.19
+
+# Taggs
+django-taggit==0.17.6
+
+# Timezones Date/time
+python-dateutil==2.4.2
+pytz==2015.6
+
+# WSGI
+gunicorn==19.3.0
+
+# Other
+argparse==1.2.1
+django-digg-paginator==0.1.2
+#wstools==0.4

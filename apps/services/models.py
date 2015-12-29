@@ -42,9 +42,9 @@ class Service(Timestamped):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     organization = models.ManyToManyField(Organization, related_name='services')
-    device = models.ManyToManyField(Device, null=True, blank=True, related_name='services')
-    component = models.ManyToManyField(Component, null=True, blank=True, related_name='services')
-    sub_services = models.ManyToManyField('self', null=True, blank=True, related_name='parent_service',
+    device = models.ManyToManyField(Device, blank=True, related_name='services')
+    component = models.ManyToManyField(Component, blank=True, related_name='services')
+    sub_services = models.ManyToManyField('self', blank=True, related_name='parent_service',
                                           symmetrical=False)
     service_type = models.ForeignKey(ServiceType)
     status = models.ForeignKey(ServiceStatus)
