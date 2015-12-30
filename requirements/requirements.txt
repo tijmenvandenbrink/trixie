@@ -3,7 +3,6 @@ Django==1.9
 
 # Configuration
 django-environ==0.4.0
-django-secure==1.0.1
 
 # Python-PostgreSQL Database Adapter
 psycopg2
